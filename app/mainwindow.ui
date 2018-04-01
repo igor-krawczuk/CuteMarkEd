@@ -167,7 +167,7 @@
      <x>0</x>
      <y>0</y>
      <width>850</width>
-     <height>21</height>
+     <height>28</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -291,11 +291,45 @@
     <addaction name="separator"/>
     <addaction name="actionOptions"/>
    </widget>
+   <widget class="QMenu" name="menuTeam">
+    <property name="title">
+     <string>Git</string>
+    </property>
+    <widget class="QMenu" name="menuRemote">
+     <property name="title">
+      <string>Remote</string>
+     </property>
+     <addaction name="actionPull_2"/>
+     <addaction name="actionPush_2"/>
+     <addaction name="actionAdd_2"/>
+    </widget>
+    <widget class="QMenu" name="menuBranch">
+     <property name="title">
+      <string>Branch</string>
+     </property>
+     <addaction name="actionCheckout_2"/>
+     <addaction name="actionMerge_2"/>
+     <addaction name="actionDelete"/>
+    </widget>
+    <widget class="QMenu" name="menuRepository">
+     <property name="title">
+      <string>Repository</string>
+     </property>
+     <addaction name="actionInit_2"/>
+     <addaction name="actionClone"/>
+    </widget>
+    <addaction name="actionAdd"/>
+    <addaction name="actionCommit"/>
+    <addaction name="menuRepository"/>
+    <addaction name="menuRemote"/>
+    <addaction name="menuBranch"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuView"/>
    <addaction name="menuExtras"/>
    <addaction name="menuHelp"/>
+   <addaction name="menuTeam"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <widget class="QDockWidget" name="dockWidget">
@@ -736,6 +770,66 @@
    </property>
    <property name="text">
     <string>&amp;Diagram Support</string>
+   </property>
+  </action>
+  <action name="actionAdd">
+   <property name="text">
+    <string>Add</string>
+   </property>
+  </action>
+  <action name="actionCommit">
+   <property name="text">
+    <string>Commit</string>
+   </property>
+  </action>
+  <action name="actionPull">
+   <property name="text">
+    <string>Pull</string>
+   </property>
+  </action>
+  <action name="actionMerge">
+   <property name="text">
+    <string>Merge</string>
+   </property>
+  </action>
+  <action name="actionCheckout_2">
+   <property name="text">
+    <string>Checkout</string>
+   </property>
+  </action>
+  <action name="actionMerge_2">
+   <property name="text">
+    <string>Merge</string>
+   </property>
+  </action>
+  <action name="actionDelete">
+   <property name="text">
+    <string>Delete</string>
+   </property>
+  </action>
+  <action name="actionPull_2">
+   <property name="text">
+    <string>Pull</string>
+   </property>
+  </action>
+  <action name="actionPush_2">
+   <property name="text">
+    <string>Push</string>
+   </property>
+  </action>
+  <action name="actionAdd_2">
+   <property name="text">
+    <string>Add</string>
+   </property>
+  </action>
+  <action name="actionInit_2">
+   <property name="text">
+    <string>Init</string>
+   </property>
+  </action>
+  <action name="actionClone">
+   <property name="text">
+    <string>Clone</string>
    </property>
   </action>
  </widget>

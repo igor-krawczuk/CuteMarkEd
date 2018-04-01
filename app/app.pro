@@ -66,7 +66,8 @@ SOURCES += \
     snippetcompleter.cpp \
     snippetstablemodel.cpp \
     aboutdialog.cpp \
-    statusbarwidget.cpp
+    statusbarwidget.cpp \
+    git/repo.cpp
 
 win32 {
     SOURCES += \
@@ -108,7 +109,8 @@ HEADERS  += \
     snippetstablemodel.h \
     aboutdialog.h \
     statusbarwidget.h \
-    savefileadapter.h
+    savefileadapter.h \
+    git/repo.h
 
 FORMS    += \
     mainwindow.ui \
