@@ -299,23 +299,23 @@
      <property name="title">
       <string>Remote</string>
      </property>
-     <addaction name="actionPull_2"/>
-     <addaction name="actionPush_2"/>
-     <addaction name="actionAdd_2"/>
+     <addaction name="actionPull"/>
+     <addaction name="actionPush"/>
+     <addaction name="actionAddRemote"/>
     </widget>
     <widget class="QMenu" name="menuBranch">
      <property name="title">
       <string>Branch</string>
      </property>
-     <addaction name="actionCheckout_2"/>
-     <addaction name="actionMerge_2"/>
+     <addaction name="actionCheckout"/>
+     <addaction name="actionMerge"/>
      <addaction name="actionDelete"/>
     </widget>
     <widget class="QMenu" name="menuRepository">
      <property name="title">
       <string>Repository</string>
      </property>
-     <addaction name="actionInit_2"/>
+     <addaction name="actionInit"/>
      <addaction name="actionClone"/>
     </widget>
     <addaction name="actionAdd"/>
@@ -782,22 +782,12 @@
     <string>Commit</string>
    </property>
   </action>
-  <action name="actionPull">
-   <property name="text">
-    <string>Pull</string>
-   </property>
-  </action>
-  <action name="actionMerge">
-   <property name="text">
-    <string>Merge</string>
-   </property>
-  </action>
-  <action name="actionCheckout_2">
+  <action name="actionCheckout">
    <property name="text">
     <string>Checkout</string>
    </property>
   </action>
-  <action name="actionMerge_2">
+  <action name="actionMerge">
    <property name="text">
     <string>Merge</string>
    </property>
@@ -807,22 +797,22 @@
     <string>Delete</string>
    </property>
   </action>
-  <action name="actionPull_2">
+  <action name="actionPull">
    <property name="text">
     <string>Pull</string>
    </property>
   </action>
-  <action name="actionPush_2">
+  <action name="actionPush">
    <property name="text">
     <string>Push</string>
    </property>
   </action>
-  <action name="actionAdd_2">
+  <action name="actionAddRemote">
    <property name="text">
-    <string>Add</string>
+    <string>Add remote</string>
    </property>
   </action>
-  <action name="actionInit_2">
+  <action name="actionInit">
    <property name="text">
     <string>Init</string>
    </property>
@@ -954,8 +944,8 @@
    <slot>plainTextChanged()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>54</x>
-     <y>156</y>
+     <x>119</x>
+     <y>184</y>
     </hint>
     <hint type="destinationlabel">
      <x>199</x>
@@ -1066,8 +1056,8 @@
    <slot>previewLinkClicked(QUrl)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>403</x>
-     <y>300</y>
+     <x>468</x>
+     <y>57</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -1715,6 +1705,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionAdd</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>git_stageChanges()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>424</x>
+     <y>266</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionCommit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>git_commit()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>424</x>
+     <y>266</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>editInsertTable()</slot>
@@ -1726,5 +1748,7 @@
   <slot>extrasShowSpecialCharacters(bool)</slot>
   <slot>extrasWordWrap(bool)</slot>
   <slot>extrasYamlHeaderSupport(bool)</slot>
+  <slot>git_stageChanges()</slot>
+  <slot>git_commit()</slot>
  </slots>
 </ui>

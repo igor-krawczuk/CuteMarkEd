@@ -41,7 +41,7 @@ class SnippetCollection;
 class ThemeCollection;
 class ViewSynchronizer;
 class StatusBarWidget;
-
+class GitRepo;
 
 class MainWindow : public QMainWindow
 {
@@ -124,6 +124,9 @@ private slots:
     void proxyConfigurationChanged();
     void markdownConverterChanged();
 
+    bool git_stageChanges();
+    bool git_commit();
+
 private:
     void setupUi();
     void setupActions();
@@ -164,6 +167,8 @@ private:
     QString fileName;
     float splitFactor;
     bool rightViewCollapsed;
+
+    GitRepo *repo;
 };
 
 #endif // MAINWINDOW_H

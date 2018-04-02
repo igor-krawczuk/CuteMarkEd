@@ -73,6 +73,9 @@
 #include "tabletooldialog.h"
 #include "statusbarwidget.h"
 
+#include <git/repo.h>
+
+
 MainWindow::MainWindow(const QString &fileName, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
@@ -85,13 +88,14 @@ MainWindow::MainWindow(const QString &fileName, QWidget *parent) :
     htmlPreviewController(0),
     themeCollection(new ThemeCollection()),
     splitFactor(0.5),
-    rightViewCollapsed(false)
+    rightViewCollapsed(false),
+    repo(nullptr)
 {
     ui->setupUi(this);
     setupUi();
 
     setFileName(fileName);
-
+    repo = new GitRepo();
     QTimer::singleShot(0, this, SLOT(initializeApp()));
 }
 
@@ -105,6 +109,9 @@ MainWindow::~MainWindow()
     delete generator;
 
     delete ui;
+    if(repo!=nullptr){
+        delete repo;
+    }
 }
 
 void MainWindow::closeEvent(QCloseEvent *e)
@@ -870,6 +877,54 @@ void MainWindow::markdownConverterChanged()
         viewSynchronizer = 0;
         break;
     }
+}
+
+bool MainWindow::git_stageChanges()
+{
+    QString start_path;
+    if(repo->no_init()){
+        if(fileName.isEmpty()){
+            start_path=QDir::homePath();
+        }else{
+            start_path=QFileInfo(fileName).dir().absolutePath();
+        }
+
+        QString dir = QFileDialog::getExistingDirectory(this, tr("Select Directory to open or initialize repo"),
+                                                    start_path,
+                                                    QFileDialog::ShowDirsOnly
+                                                    | QFileDialog::DontResolveSymlinks);
+
+        repo->open_or_initialize(QFileInfo(dir));//open or initialize a repo in a given directory
+    }
+    return repo->addAll();//stage all changes (add files, delete, modify) in repo dir
+
+}
+
+bool MainWindow::git_commit()
+{
+    QString msg;
+    while(options->getGitName().isEmpty()){
+            auto m_gitName= QInputDialog::getText(this, tr("QInputDialog::getText()"),
+                                                 tr("User name:"), QLineEdit::Normal,
+                                                 QString(), nullptr);
+            options->setGitName(m_gitName);
+    }
+
+    while(options->getGitEmail().isEmpty()){
+            auto m_gitEmail= QInputDialog::getText(this, tr("QInputDialog::getText()"),
+                                                 tr("User email:"), QLineEdit::Normal,
+                                                 QString(), nullptr);
+            options->setGitEmail(m_gitEmail);
+    }
+
+    while (msg.isEmpty()){
+        msg= QInputDialog::getText(this, tr("QInputDialog::getText()"),
+                                             tr("Commit message:"), QLineEdit::Normal,
+                                             QString(), nullptr);
+
+    }
+
+    return repo->commit(msg,options->getGitName(),options->getGitEmail());
 }
 
 void MainWindow::setupUi()

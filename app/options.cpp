@@ -18,6 +18,7 @@
 
 #include <QWebSettings>
 
+#include <QInputDialog>
 
 static const char* MARKDOWN_CONVERTER = "General/converter";
 static const char* LAST_USED_THEME = "General/lastusedtheme";
@@ -478,6 +479,18 @@ QString Options::lastUsedTheme() const
 void Options::setLastUsedTheme(const QString &theme)
 {
     m_lastUsedTheme = theme;
+}
+
+const QString &Options::getGitEmail()
+{
+    return m_gitEmail;
+}
+
+const QString &Options::getGitName()
+{
+
+
+    return m_gitName;
 }
 
 void Options::readSettings()

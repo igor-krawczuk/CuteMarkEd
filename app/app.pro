@@ -205,6 +205,7 @@ else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../libs/peg-markdow
 else:unix: LIBS += -L$$OUT_PWD/../libs/peg-markdown-highlight/ -lpmh-adapter
 
 INCLUDEPATH += $$PWD/../libs/
+INCLUDEPATH += $$PWD/../libs/libgit2/include
 DEPENDPATH += $$PWD/../libs/peg-markdown-highlight
 
 win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../libs/peg-markdown-highlight/release/libpmh-adapter.a
@@ -217,6 +218,9 @@ else:unix: PRE_TARGETDEPS += $$OUT_PWD/../libs/peg-markdown-highlight/libpmh-ada
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../3rdparty/peg-markdown-highlight/release/ -lpmh
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../3rdparty/peg-markdown-highlight/debug/ -lpmh
 else:unix: LIBS += -L$$OUT_PWD/../3rdparty/peg-markdown-highlight/ -lpmh
+
+# libgit2
+unix: LIBS += -L$$PWD/../libs/libgit2/build/ -lgit2
 
 INCLUDEPATH += $$PWD/../3rdparty/peg-markdown-highlight
 DEPENDPATH += $$PWD/../3rdparty/peg-markdown-highlight

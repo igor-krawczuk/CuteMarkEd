@@ -152,6 +152,16 @@ public:
     QString lastUsedTheme() const;
     void setLastUsedTheme(const QString &theme);
 
+    const QString& getGitEmail();
+    void  setGitEmail(const QString& email){
+        m_gitEmail=email;
+    }
+    void  setGitName(const QString& name){
+        m_gitName=name;
+    }
+
+    const QString& getGitName();
+
     void readSettings();
     void writeSettings();
 
@@ -206,6 +216,9 @@ private:
     int m_defaultFontSize;
     int m_defaultFixedFontSize;
     QMap<QString, QKeySequence> m_customShortcuts;
+
+    QString m_gitEmail;
+    QString m_gitName;
 };
 
 #endif // OPTIONS_H
